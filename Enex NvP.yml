@@ -1,0 +1,337 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Enex NvP
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 10
+        file_size_limit: 100
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1746875550688-source-answer-target
+      source: '1746875550688'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1746875099573-source-1746876427899-target
+      source: '1746875099573'
+      sourceHandle: source
+      target: '1746876427899'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1746875582175-source-1746876427899-target
+      source: '1746875582175'
+      sourceHandle: source
+      target: '1746876427899'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1746876427899-source-1746875550688-target
+      source: '1746876427899'
+      sourceHandle: source
+      target: '1746875550688'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1746874748464-source-1746875099573-target
+      source: '1746874748464'
+      sourceHandle: source
+      target: '1746875099573'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1746874748464-source-1746875582175-target
+      source: '1746874748464'
+      sourceHandle: source
+      target: '1746875582175'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1746874748464-source-1746878437313-target
+      source: '1746874748464'
+      sourceHandle: source
+      target: '1746878437313'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1746878437313-source-1746876427899-target
+      source: '1746878437313'
+      sourceHandle: source
+      target: '1746876427899'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1746874748464'
+      position:
+        x: 300.8299873351416
+        y: 280.44402797536395
+      positionAbsolute:
+        x: 300.8299873351416
+        y: 280.44402797536395
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1746875550688.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 1553.3581145653861
+        y: 242.06247257280597
+      positionAbsolute:
+        x: 1553.3581145653861
+        y: 242.06247257280597
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 9df1b2c4-6640-4a28-9063-0096b013583c
+        provider_name: finance_subsidiaries_wf
+        provider_type: workflow
+        selected: false
+        title: FINANCE_EXPERT
+        tool_configurations: {}
+        tool_label: finance_subsidiaries_wf
+        tool_name: finance_subsidiaries_wf_tool
+        tool_parameters:
+          user_input:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 54
+      id: '1746875099573'
+      position:
+        x: 653.9364004342087
+        y: 163.13715191014757
+      positionAbsolute:
+        x: 653.9364004342087
+        y: 163.13715191014757
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o
+          provider: openrouter
+        prompt_template:
+        - id: c6f23a56-cf22-4190-b819-83afe52b5554
+          role: system
+          text: Compose a short overview answer based on the inputs from different
+            experts provided in {{#1746876427899.output#}}. Start with technical details,
+            followed by legal and financial aspects. Be interactive and ask one question
+            to aggregate more data about the consumers status quo. Focus on short
+            and clear questioning.
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1746875550688'
+      position:
+        x: 1242.6613035757248
+        y: 242.06247257280597
+      positionAbsolute:
+        x: 1242.6613035757248
+        y: 242.06247257280597
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 9ae9f922-cdba-4890-9976-3aaa55fea767
+        provider_name: LegalAgent
+        provider_type: workflow
+        selected: false
+        title: LEGAL_EXPERT
+        tool_configurations: {}
+        tool_label: LegalAgent
+        tool_name: LegalAgent
+        tool_parameters:
+          Chatinput:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 54
+      id: '1746875582175'
+      position:
+        x: 653.9364004342087
+        y: 280.44402797536395
+      positionAbsolute:
+        x: 653.9364004342087
+        y: 280.44402797536395
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: Variable Aggregator
+        type: variable-aggregator
+        variables:
+        - - '1746875582175'
+          - text
+        - - '1746875099573'
+          - text
+        - - '1746878437313'
+          - text
+      height: 153
+      id: '1746876427899'
+      position:
+        x: 958.2517535336658
+        y: 225.61025862363113
+      positionAbsolute:
+        x: 958.2517535336658
+        y: 225.61025862363113
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: bc1b30e9-79dc-4c5e-800c-90c047f4f524
+        provider_name: technical_expert_wf
+        provider_type: workflow
+        selected: false
+        title: TECHNICAL_EXPERT
+        tool_configurations: {}
+        tool_label: technical_expert_wf
+        tool_name: technical_expert
+        tool_parameters:
+          UserInput:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 54
+      id: '1746878437313'
+      position:
+        x: 653.9364004342087
+        y: 391.6452213949175
+      positionAbsolute:
+        x: 653.9364004342087
+        y: 391.6452213949175
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -118.6054193354538
+      y: 191.44703898117433
+      zoom: 0.6229148325139914
