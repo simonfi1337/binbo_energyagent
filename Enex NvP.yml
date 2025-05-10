@@ -3,7 +3,7 @@ app:
   icon: 🤖
   icon_background: '#FFEAD5'
   mode: advanced-chat
-  name: energy_consultant_overall
+  name: Enex NvP
   use_icon_as_answer_icon: false
 kind: app
 version: 0.1.5
@@ -153,12 +153,12 @@ workflow:
       height: 54
       id: '1746874748464'
       position:
-        x: 206.11398938421002
+        x: 300.8299873351416
         y: 280.44402797536395
       positionAbsolute:
-        x: 206.11398938421002
+        x: 300.8299873351416
         y: 280.44402797536395
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -170,7 +170,7 @@ workflow:
         title: Answer
         type: answer
         variables: []
-      height: 102
+      height: 103
       id: answer
       position:
         x: 1553.3581145653861
@@ -189,7 +189,7 @@ workflow:
         provider_name: finance_subsidiaries_wf
         provider_type: workflow
         selected: false
-        title: finance_subsidiaries_wf
+        title: FINANCE_EXPERT
         tool_configurations: {}
         tool_label: finance_subsidiaries_wf
         tool_name: finance_subsidiaries_wf_tool
@@ -202,10 +202,10 @@ workflow:
       id: '1746875099573'
       position:
         x: 653.9364004342087
-        y: 180.79606678235513
+        y: 163.13715191014757
       positionAbsolute:
         x: 653.9364004342087
-        y: 180.79606678235513
+        y: 163.13715191014757
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -225,8 +225,11 @@ workflow:
         prompt_template:
         - id: c6f23a56-cf22-4190-b819-83afe52b5554
           role: system
-          text: Compose an overview short answer based on the inputs from different
-            experts provided in {{#1746876427899.output#}}
+          text: Compose a short overview answer based on the inputs from different
+            experts provided in {{#1746876427899.output#}}. Start with technical details,
+            followed by legal and financial aspects. Be interactive and ask one question
+            to aggregate more data about the consumers status quo. Focus on short
+            and clear questioning.
         selected: false
         title: LLM
         type: llm
@@ -236,10 +239,10 @@ workflow:
       height: 98
       id: '1746875550688'
       position:
-        x: 1244.2666594731984
+        x: 1242.6613035757248
         y: 242.06247257280597
       positionAbsolute:
-        x: 1244.2666594731984
+        x: 1242.6613035757248
         y: 242.06247257280597
       selected: false
       sourcePosition: right
@@ -252,7 +255,7 @@ workflow:
         provider_name: LegalAgent
         provider_type: workflow
         selected: false
-        title: LegalAgent
+        title: LEGAL_EXPERT
         tool_configurations: {}
         tool_label: LegalAgent
         tool_name: LegalAgent
@@ -295,7 +298,7 @@ workflow:
       positionAbsolute:
         x: 958.2517535336658
         y: 225.61025862363113
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -306,7 +309,7 @@ workflow:
         provider_name: technical_expert_wf
         provider_type: workflow
         selected: false
-        title: technical_expert_wf
+        title: TECHNICAL_EXPERT
         tool_configurations: {}
         tool_label: technical_expert_wf
         tool_name: technical_expert
@@ -329,6 +332,6 @@ workflow:
       type: custom
       width: 244
     viewport:
-      x: -156.6282901198942
-      y: 17.8012293126788
-      zoom: 0.8853616350058756
+      x: -118.6054193354538
+      y: 191.44703898117433
+      zoom: 0.6229148325139914
