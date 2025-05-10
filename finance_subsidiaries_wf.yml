@@ -1,0 +1,216 @@
+app:
+  description: agent for finance and subsidiaries
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: finance_subsidiaries_wf
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 10
+        file_size_limit: 100
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1746865564258-source-1746873340497-target
+      source: '1746865564258'
+      sourceHandle: source
+      target: '1746873340497'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1746865521791-source-1746878298165-target
+      source: '1746865521791'
+      sourceHandle: source
+      target: '1746878298165'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1746878298165-source-1746865564258-target
+      source: '1746878298165'
+      sourceHandle: source
+      target: '1746865564258'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: user_input
+          max_length: 5000
+          options: []
+          required: true
+          type: paragraph
+          variable: user_input
+      height: 90
+      id: '1746865521791'
+      position:
+        x: 73.49554538565957
+        y: 282
+      positionAbsolute:
+        x: 73.49554538565957
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1746877636709'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o
+          provider: openrouter
+        prompt_template:
+        - id: 0690dedf-6108-4a74-8a8b-698161b7f87f
+          role: system
+          text: "You are a finance assistant that specializes in household.\nThe question\
+            \ user is want you to help with is:\"{{#1746865521791.user_input#}}\"\
+            . \nUse {{#context#}}for additional context in the question.\nForm your\
+            \ answer into 2 different sections: Financial and Subsidiaries. If you\
+            \ cannot really answer the question, because it is not your field of expertise\
+            \ just say it and do not hallucinate shit."
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1746865564258'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1746865564258'
+          - text
+          variable: text
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1746873340497'
+      position:
+        x: 1009.5624260574467
+        y: 309.62826058533614
+      positionAbsolute:
+        x: 1009.5624260574467
+        y: 309.62826058533614
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - e16d5f18-1478-4962-98e2-7ff2c79d2b17
+        - db3f8709-411e-43dd-acaa-b6768460fbd1
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: ''
+            provider: ''
+          top_k: 4
+        query_variable_selector:
+        - '1746865521791'
+        - user_input
+        retrieval_mode: multiple
+        selected: true
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 120
+      id: '1746878298165'
+      position:
+        x: 362.43305585776125
+        y: 292.44333278195734
+      positionAbsolute:
+        x: 362.43305585776125
+        y: 292.44333278195734
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -152.2136876834952
+      y: 41.940350219947675
+      zoom: 0.9166208278029535
