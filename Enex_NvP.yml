@@ -143,6 +143,28 @@ workflow:
       targetHandle: target
       type: custom
       zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1746876427899-source-1746954044829-target
+      source: '1746876427899'
+      sourceHandle: source
+      target: '1746954044829'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1746954044829-source-1746954541511-target
+      source: '1746954044829'
+      sourceHandle: source
+      target: '1746954541511'
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
     - data:
         desc: ''
@@ -150,7 +172,7 @@ workflow:
         title: Start
         type: start
         variables: []
-      height: 54
+      height: 53
       id: '1746874748464'
       position:
         x: 300.8299873351416
@@ -170,7 +192,7 @@ workflow:
         title: Answer
         type: answer
         variables: []
-      height: 103
+      height: 102
       id: answer
       position:
         x: 1553.3581145653861
@@ -198,7 +220,7 @@ workflow:
             type: mixed
             value: '{{#sys.query#}}'
         type: tool
-      height: 54
+      height: 53
       id: '1746875099573'
       position:
         x: 653.9364004342087
@@ -216,6 +238,14 @@ workflow:
           enabled: false
           variable_selector: []
         desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
         model:
           completion_params:
             temperature: 0.7
@@ -236,7 +266,7 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 98
+      height: 97
       id: '1746875550688'
       position:
         x: 1242.6613035757248
@@ -264,7 +294,7 @@ workflow:
             type: mixed
             value: '{{#sys.query#}}'
         type: tool
-      height: 54
+      height: 53
       id: '1746875582175'
       position:
         x: 653.9364004342087
@@ -290,7 +320,7 @@ workflow:
           - text
         - - '1746878437313'
           - text
-      height: 153
+      height: 152
       id: '1746876427899'
       position:
         x: 958.2517535336658
@@ -298,7 +328,7 @@ workflow:
       positionAbsolute:
         x: 958.2517535336658
         y: 225.61025862363113
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -318,7 +348,7 @@ workflow:
             type: mixed
             value: '{{#sys.query#}}'
         type: tool
-      height: 54
+      height: 53
       id: '1746878437313'
       position:
         x: 653.9364004342087
@@ -331,7 +361,159 @@ workflow:
       targetPosition: left
       type: custom
       width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1746876427899'
+          - output
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/o1-preview
+          provider: openrouter
+        prompt_template:
+        - id: 48cbe6f5-ee2e-486d-8851-42ab04b3a128
+          role: system
+          text: prepare a PDF template based on the {{#context#}} with the potential
+            price reduction costs; environmental impact, next steps propositions and
+            some; form the output in the LaTex format so that it could be generated
+            in the next step; make sure that the output is only the LaTex string and
+            not wrapped in a JSON in any way, this is very important
+        selected: false
+        title: pdf template generation
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1746954044829'
+      position:
+        x: 1242.6613035757248
+        y: 477.75009747056913
+      positionAbsolute:
+        x: 1242.6613035757248
+        y: 477.75009747056913
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 67878b4f-4ef9-4202-af39-52e1bc4dc070
+        provider_name: latext generator
+        provider_type: api
+        selected: false
+        title: renderLatexToPdf
+        tool_configurations: {}
+        tool_label: renderLatexToPdf
+        tool_name: renderLatexToPdf
+        tool_parameters:
+          latexCode:
+            type: mixed
+            value: '{{#1746954044829.text#}}'
+        type: tool
+      height: 53
+      id: '1746954541511'
+      position:
+        x: 1553.3581145653861
+        y: 477.75009747056913
+      positionAbsolute:
+        x: 1553.3581145653861
+        y: 477.75009747056913
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: aritas
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"The
+          LLM can decide to generate a PDF via a function call","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1746955161520'
+      position:
+        x: 1242.6613035757248
+        y: 375.6737771468374
+      positionAbsolute:
+        x: 1242.6613035757248
+        y: 375.6737771468374
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: aritas
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Optimize
+          later to reduce cost by only trigger needed experts","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1746955780705'
+      position:
+        x: 653.9364004342087
+        y: 51.72012565109429
+      positionAbsolute:
+        x: 653.9364004342087
+        y: 51.72012565109429
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: aritas
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Chatbot
+          trained to create a real conversation asking easy questions to aggregate
+          data","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ' (1)'
+        type: ''
+        width: 240
+      height: 88
+      id: '17469558192290'
+      position:
+        x: 1242.6613035757248
+        y: 127.80867673348851
+      positionAbsolute:
+        x: 1242.6613035757248
+        y: 127.80867673348851
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
     viewport:
-      x: -118.6054193354538
-      y: 191.44703898117433
-      zoom: 0.6229148325139914
+      x: -81.54937993574185
+      y: 166.21569002768854
+      zoom: 0.530357654149396
