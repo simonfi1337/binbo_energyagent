@@ -7,3 +7,10 @@ In the field of energy advice, conventional methods of assessing energy efficien
 
 How might we use LLMs and domain-specific knowledge to build a tailored energy advisor that delivers personalized energy consulting (e.g. including costs, funding) based on user-provided building information – so that we can help users identify and implement energy-saving measures?
 ```
+
+### Usage
+This project is created in Dify (https://dify.ai/).
+Within your server instance upload the given *yml files to use the LLM-Agents.
+The bot is given by Enex_NvP.yml (as a chatflow) and integrates the workflows 
+finance_expert_wf, legal_expert and technical_experts. 
+You can start the chatbot by importing the chatflow, publish it and start the app.
