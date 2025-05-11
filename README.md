@@ -14,3 +14,5 @@ Within your server instance upload the given *yml files to use the LLM-Agents.
 The bot is given by Enex_NvP.yml (as a chatflow) and integrates the workflows 
 finance_expert_wf, legal_expert and technical_experts. 
 You can start the chatbot by importing the chatflow, publish it and start the app.
+
+start your demo: https://hkt.aritas.de/chat/LWL9Tx8Rb492EkYm
